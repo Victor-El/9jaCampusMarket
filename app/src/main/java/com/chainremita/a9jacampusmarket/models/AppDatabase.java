@@ -1,0 +1,9 @@
+package com.chainremita.a9jacampusmarket.models;
+
+import androidx.room.Database;
+import androidx.room.RoomDatabase;
+
+@Database(entities = {AppItemData.class}, version = 1, exportSchema = false)
+public abstract class AppDatabase extends RoomDatabase {
+    public abstract CampusMarketDao campusMarketDao();
+}

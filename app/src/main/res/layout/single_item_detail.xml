@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/item_view_title_caption_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="20 Inches foam (Bed and mattress)"
+        android:textColor="@color/colorAccentDark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/item_view_call_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/generic_button_shape"
+        android:drawableStart="@drawable/ic_call_black_24dp"
+        android:drawableLeft="@drawable/ic_call_black_24dp"
+        android:padding="16dp"
+        android:text="Call"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="@+id/item_view_title_caption_category"
+        app:layout_constraintTop_toBottomOf="@+id/item_view_title_caption_category" />
+
+    <Button
+        android:id="@+id/item_view_chat_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/orange_button_shape"
+        android:drawableStart="@drawable/ic_chat_white_24dp"
+        android:drawableLeft="@drawable/ic_chat_white_24dp"
+        android:padding="16dp"
+        android:text="Chat"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="@+id/item_view_title_caption_category"
+        app:layout_constraintTop_toBottomOf="@+id/item_view_title_caption_category" />
+
+    <TextView
+        android:id="@+id/item_view_class_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="Class"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/item_view_call_button"
+        app:layout_constraintTop_toBottomOf="@+id/item_view_call_button" />
+
+    <TextView
+        android:id="@+id/item_view_negotiable_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="Negotiable"
+        android:textColor="#FF7700"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/item_view_chat_button"
+        app:layout_constraintTop_toBottomOf="@+id/item_view_chat_button" />
+
+    <TextView
+        android:id="@+id/item_view_price_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Price"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/item_view_negotiable_text_view"
+        app:layout_constraintStart_toEndOf="@+id/item_view_class_text_view"
+        app:layout_constraintTop_toTopOf="@+id/item_view_class_text_view" />
+
+    <TextView
+        android:id="@+id/item_view_class_text_view_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:text="Brand new"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/item_view_class_text_view"
+        app:layout_constraintStart_toStartOf="@+id/item_view_class_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/item_view_class_text_view" />
+
+    <TextView
+        android:id="@+id/item_view_price_text_view_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:text="NGN 30,000.00"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/item_view_price_text_view"
+        app:layout_constraintStart_toStartOf="@+id/item_view_price_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/item_view_price_text_view" />
+
+    <TextView
+        android:id="@+id/item_view_negotiable_text_view_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:text="Yes"
+        android:textColor="#FF7700"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/item_view_negotiable_text_view"
+        app:layout_constraintStart_toStartOf="@+id/item_view_negotiable_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/item_view_negotiable_text_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/image_recyc_view_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/item_view_negotiable_text_view"
+        app:layout_constraintStart_toStartOf="@+id/item_view_class_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/item_view_price_text_view"
+        app:reverseLayout="true" />
+        <!--tools:listitem="@layout/image_view_item_detail"-->
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="40dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_recyc_view_main"
+        app:srcCompat="@drawable/ic_person_green_24dp" />
+
+    <TextView
+        android:id="@+id/item_view_username_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="\@bright4futo"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/item_view_user_rating_value"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <RatingBar
+        android:id="@+id/item_view_user_rating_value"
+        style="@android:style/Widget.DeviceDefault.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:numStars="5"
+        android:rating="4"
+        android:stepSize="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_recyc_view_main" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/ic_place_black_24dp" />
+
+    <TextView
+        android:id="@+id/item_view_location_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="federal university of technology, Owerri"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/item_view_location_abbr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="(FUTO)"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/item_view_location_name"
+        app:layout_constraintStart_toStartOf="@+id/item_view_location_name"
+        app:layout_constraintTop_toBottomOf="@+id/item_view_location_name" />
+
+    <TextView
+        android:id="@+id/item_view_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/ic_call_green_24dp"
+        android:drawableLeft="@drawable/ic_call_green_24dp"
+        android:text="09076282648"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/item_view_location_abbr"
+        app:layout_constraintStart_toStartOf="@+id/item_view_location_abbr"
+        app:layout_constraintTop_toBottomOf="@+id/item_view_location_abbr" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="product/Service detail"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_view_phone" />
+
+    <TextView
+        android:id="@+id/item_view_item_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:padding="16dp"
+        android:text="This foam is a very good foam."
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <Button
+        android:id="@+id/item_view_review_product_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/generic_button_shape"
+        android:drawableStart="@drawable/ic_stars_green_24dp"
+        android:drawableLeft="@drawable/ic_stars_green_24dp"
+        android:padding="16dp"
+        android:text="Review this product"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_view_item_description" />
+</androidx.constraintlayout.widget.ConstraintLayout>

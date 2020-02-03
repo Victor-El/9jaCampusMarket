@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.chainremita.a9jacampusmarket.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="104"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/search"
+        android:title="Search"
+        android:icon="@drawable/baseline_search_white_24dp"
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+    <item
+        android:id="@+id/action_filter"
+        android:title="filter"
+        android:icon="@drawable/ic_filter_list_white_24dp"
+        android:orderInCategory="101"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/action_refresh"
+        android:orderInCategory="102"
+        android:title="refresh"
+        android:icon="@drawable/ic_refresh_white_24dp"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_clear_search"
+        android:title="Clear search suggestions"
+        android:orderInCategory="103"
+        app:showAsAction="never"/>
+
+</menu>
