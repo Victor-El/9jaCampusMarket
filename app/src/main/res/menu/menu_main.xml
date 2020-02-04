@@ -32,5 +32,10 @@
         android:title="Clear search suggestions"
         android:orderInCategory="103"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="105"
+        android:title="About 9jaCampusMarket"
+        app:showAsAction="never" />
 
 </menu>

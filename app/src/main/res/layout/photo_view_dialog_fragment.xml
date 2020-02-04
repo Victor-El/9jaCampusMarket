@@ -25,6 +25,6 @@
         android:layout_marginRight="32dp"
         app:layout_constraintEnd_toEndOf="@+id/photo_view"
         app:layout_constraintTop_toTopOf="@+id/photo_view"
-        app:srcCompat="@drawable/ic_close_green_24dp" />
+        app:srcCompat="@drawable/ic_cancel_white_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

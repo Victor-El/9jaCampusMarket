@@ -55,7 +55,7 @@ public class MyItemRecyclerAdapter extends RecyclerView.Adapter<MyItemRecyclerAd
         holder.discountTextView.setText("NGN " + String.format("%,.2f", (Float.parseFloat(mItemData.get(position).getPrice()) - Float.parseFloat(mItemData.get(position).getDiscount()))));
         holder.priceTextView.setText("NGN " + String.format("%,.2f", Float.parseFloat(mItemData.get(position).getPrice())));
         holder.priceTextView.setPaintFlags(holder.priceTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        holder.ratingBar.setRating(Float.parseFloat(mItemData.get(position).getUserRating().getRating() == null ? "0" : mItemData.get(position).getUserRating().getRating()));
+        holder.ratingBar.setRating(Float.parseFloat(mItemData.get(position).getUserRating().getRating() == null ? "0" : String.format("%.1f", Float.parseFloat(mItemData.get(position).getUserRating().getRating()) / 2)));
         holder.ratingBar.setFocusable(false);
         holder.ratingBar.setIsIndicator(true);
         holder.categoryTextView.setText(mItemData.get(position).getCategory().getName());
@@ -84,7 +84,7 @@ public class MyItemRecyclerAdapter extends RecyclerView.Adapter<MyItemRecyclerAd
                 mItemData.get(position).getCaption(), mItemData.get(position).getCategory().getName(),
                 mItemData.get(position).getUserData().getPhone(), mItemData.get(position).getNeww().equals("0") ? "Fairly Used" : "New",
                 mItemData.get(position).getDiscount().equals("0") ? "No" : "Yes", mItemData.get(position).getPrice(),
-                mItemData.get(position).getUserData().getUsername(), mItemData.get(position).getUserRating().getRating(),
+                mItemData.get(position).getUserData().getUsername(), String.format("%.1f", Float.parseFloat(mItemData.get(position).getUserRating().getRating()) / 2),
                 mItemData.get(position).getLocation().getName(), mItemData.get(position).getLocation().getAbbr(), mItemData.get(position).getDescription(),
                 mItemData.get(position).getImageServer().getServerId(), mItemData.get(position).getImageServer1() == null ? "null" :mItemData.get(position).getImageServer1().getServerId(),
                 mItemData.get(position).getImageServer2() == null ? null : mItemData.get(position).getImageServer2().getServerId(), mItemData.get(position).getImageServer3() == null ? null : mItemData.get(position).getImageServer3().getServerId(),

@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.SearchManager;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chainremita.a9jacampusmarket.adapterviews.MyItemRecyclerAdapter;
+import com.chainremita.a9jacampusmarket.adapterviews.MySearchRecyclerAdapter;
 import com.chainremita.a9jacampusmarket.api.CampusMarketService;
 import com.chainremita.a9jacampusmarket.api.SearchQuery;
 import com.chainremita.a9jacampusmarket.api.regularitems.Item;
@@ -38,6 +41,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SearchableActivity extends AppCompatActivity {
     LinearLayoutManager layoutManager;
+    //StaggeredGridLayoutManager layoutManager;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -60,11 +64,11 @@ public class SearchableActivity extends AppCompatActivity {
         constraintLayout = findViewById(R.id.searchable_constraint_root);
         recyclerView = findViewById(R.id.search_recycler_view);
         recyclerView.hasFixedSize();
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        //layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)/*new LinearLayoutManager(this)*/;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         swipeRefreshLayout = findViewById(R.id.search_swipe_refresh);
         notFoundTextView = findViewById(R.id.search_not_found_tv);
-        notFoundTextView.setVisibility(View.INVISIBLE);
+        notFoundTextView.setVisibility(View.GONE);
         dataList = new ArrayList<>();
 
         if (savedInstanceState != null) {
@@ -82,6 +86,10 @@ public class SearchableActivity extends AppCompatActivity {
                 handleIntent(getIntent());
             }
         });
+
+        if (savedInstanceState != null) {
+            constraintLayout.setBackgroundResource(0);
+        }
     }
 
     @Override
@@ -128,7 +136,7 @@ public class SearchableActivity extends AppCompatActivity {
                 public void onResponse(Call<Item> call, Response<Item> response) {
                     List<ItemData> itemDataList = response.body().getData();
                     dataList.addAll(itemDataList);
-                    adapter = new MyItemRecyclerAdapter(itemDataList, getApplicationContext());
+                    adapter = new MySearchRecyclerAdapter(getApplicationContext(), itemDataList);
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
@@ -163,7 +171,7 @@ public class SearchableActivity extends AppCompatActivity {
         swipeRefreshLayout.setRefreshing(true);
         List<ItemData> itemDataL = data;
         dataList.addAll(itemDataL);
-        adapter = new MyItemRecyclerAdapter(itemDataL, getApplicationContext());
+        adapter = new MySearchRecyclerAdapter(getApplicationContext(), itemDataL);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         swipeRefreshLayout.setRefreshing(false);

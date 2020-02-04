@@ -1,6 +1,7 @@
 package com.chainremita.a9jacampusmarket;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.chainremita.a9jacampusmarket.Fragments.FilterFragmentDialog;
@@ -93,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView textViewForNewItems, textViewForOldItems, textViewForSponsored;
     private TextView newItemsNotFound, fairlyUsedItemsNotFound, sponsoredItemsNotFound;
+    private NotificationManager mNotificationManager;
+    private BroadcastReceiver broadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,8 +112,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                sendMail();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
             }
         });
 
@@ -175,6 +180,42 @@ public class MainActivity extends AppCompatActivity {
         newItemsNotFound.setVisibility(View.GONE);
         fairlyUsedItemsNotFound.setVisibility(View.GONE);
         sponsoredItemsNotFound.setVisibility(View.GONE);
+
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+                    startService(new Intent(MainActivity.this, MyService.class));
+                };
+            }
+        };
+        registerReceiver(broadcastReceiver, new IntentFilter(Intent.ACTION_BOOT_COMPLETED));
+    }
+
+    @Override
+    protected void onPause() {
+        registerReceiver(filterBroadcastReceiver, new IntentFilter("filtered"));
+        registerReceiver(broadcastReceiver, new IntentFilter(Intent.ACTION_BOOT_COMPLETED));
+        unregisterReceiver(filterBroadcastReceiver);
+        unregisterReceiver(broadcastReceiver);
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    private void sendMail() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"okorobernvy@gmail.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Change this subject");
+        intent.putExtra(Intent.EXTRA_TEXT, "Edit this body");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
     }
 
     @Override
@@ -201,7 +242,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        registerReceiver(filterBroadcastReceiver, new IntentFilter("filtered"));
+        registerReceiver(broadcastReceiver, new IntentFilter(Intent.ACTION_BOOT_COMPLETED));
         unregisterReceiver(filterBroadcastReceiver);
+        unregisterReceiver(broadcastReceiver);
         Gson gson = new Gson();
         List<List<ItemData>> toJson = new ArrayList<>();
         toJson.addAll(glob);
@@ -226,6 +270,14 @@ public class MainActivity extends AppCompatActivity {
                 searchManager.getSearchableInfo(getComponentName()));
 
         return true;
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        startService(new Intent(this, MyService.class));
+//        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        mNotificationManager.cancel(1);
     }
 
     @Override
@@ -312,6 +364,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SponsoredItem> call, Throwable t) {
+                newItemsNotFound.setVisibility(View.GONE);
+                fairlyUsedItemsNotFound.setVisibility(View.GONE);
+                sponsoredItemsNotFound.setVisibility(View.GONE);
                 Toast.makeText(MainActivity.this, "Failed to load \"Contents for you\"", Toast.LENGTH_SHORT).show();
                 Log.d("SponsoredResponseError", "Failed to load \"Contents for you\" " + t.getMessage());
             }
@@ -359,6 +414,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Item> call, Throwable t) {
                 //pd.dismiss();
+                newItemsNotFound.setVisibility(View.GONE);
+                fairlyUsedItemsNotFound.setVisibility(View.GONE);
+                sponsoredItemsNotFound.setVisibility(View.GONE);
                 progressBar.setVisibility(View.INVISIBLE);
                 Log.d("CodeEnzyme", "Error "+t.getMessage());
 
@@ -372,12 +430,18 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         loadData(getData());
                         dialog.dismiss();
+                        newItemsNotFound.setVisibility(View.GONE);
+                        fairlyUsedItemsNotFound.setVisibility(View.GONE);
+                        sponsoredItemsNotFound.setVisibility(View.GONE);
                     }
                 });
 
                 builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        newItemsNotFound.setVisibility(View.GONE);
+                        fairlyUsedItemsNotFound.setVisibility(View.GONE);
+                        sponsoredItemsNotFound.setVisibility(View.GONE);
                         dialog.dismiss();
                         MainActivity.this.finish();
                     }
@@ -458,7 +522,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<FCategory> call, Throwable t) {
-
+                newItemsNotFound.setVisibility(View.GONE);
+                fairlyUsedItemsNotFound.setVisibility(View.GONE);
+                sponsoredItemsNotFound.setVisibility(View.GONE);
             }
         });
 
@@ -474,7 +540,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<FLocation> call, Throwable t) {
-
+                newItemsNotFound.setVisibility(View.GONE);
+                fairlyUsedItemsNotFound.setVisibility(View.GONE);
+                sponsoredItemsNotFound.setVisibility(View.GONE);
             }
         });
     }
